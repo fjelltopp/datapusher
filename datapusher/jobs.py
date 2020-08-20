@@ -417,7 +417,7 @@ def push_to_datastore(task_id, input, dry_run=False):
     if resource.get('format').lower() == 'geojson':
         logger.info('Converting geojson to csv')
         tmp = geojson2csv.convert(tmp, logger)
-        logger.info('Done. {} lines in the file'.format(len(tmp.readlines())))
+        logger.info('Done.')
         ct = 'application/csv'
 
     try:
