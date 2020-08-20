@@ -87,40 +87,6 @@ class TestImport(unittest.TestCase):
 
         jobs.push_to_datastore('fake_id', data)
 
-    @httpretty.activate
-    def test_simple_geojson(self):
-        self.register_urls()
-        source_url = 'http://www.source.org/static/simple.geojson'
-        httpretty.register_uri(
-            httpretty.GET,
-            source_url,
-            body=get_static_file('simple.geojson'),
-            content_type="application/json"
-        )
-        res_url = 'http://www.ckan.org/api/3/action/resource_show'
-        httpretty.register_uri(
-            httpretty.POST,
-            res_url,
-            body=json.dumps({
-                'success': True,
-                'result': {
-                    'id': '32h4345k34h5l345',
-                    'name': 'Malawi GeoJSON',
-                    'url': source_url,
-                    'format': 'GeoJSON'
-                }
-            }),
-            content_type="application/json"
-        )
-        data = {
-            'api_key': self.api_key,
-            'job_type': 'push_to_datastore',
-            'metadata': {
-                'ckan_url': 'http://{}/'.format(self.host),
-                'resource_id': self.resource_id
-            }
-        }
-        jobs.push_to_datastore('fake_id', data)
 
     @httpretty.activate
     def test_wrong_api_key(self):
