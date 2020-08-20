@@ -107,6 +107,20 @@ class TestGeoJSON(unittest.TestCase):
         for i, el in enumerate(output_geometry):
             self.assertDictEqual(json.loads(expected_geometry[i]), json.loads(el))
 
+    def test_convert_malawi(self):
+        log = logging.getLogger(__name__)
+        geojson = open(join_static_path('malawi_input.geojson'))
+        output_csv = convert(geojson, log)
+        output_csv = pandas.read_csv(output_csv)
+        expected_csv = pandas.read_csv(join_static_path('malawi_output.csv'))
+        self.assertEqual(set(output_csv.columns), set(expected_csv.columns))
+        output_csv = output_csv[expected_csv.columns]
+        output_geometry = output_csv.pop('geometry')
+        expected_geometry = expected_csv.pop('geometry')
+        pandas.util.testing.assert_frame_equal(output_csv, expected_csv)
+        for i, el in enumerate(output_geometry):
+            self.assertDictEqual(json.loads(expected_geometry[i]), json.loads(el))
+
     def test_convert_no_features(self):
         log = logging.getLogger(__name__)
         geojson = get_static_file('simple_input.geojson')
