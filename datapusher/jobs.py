@@ -18,6 +18,7 @@ import time
 import tempfile
 
 import messytables
+from datapusher import geojson2csv
 
 import ckanserviceprovider.job as job
 import ckanserviceprovider.util as util
@@ -412,6 +413,12 @@ def push_to_datastore(task_id, input, dry_run=False):
         return
 
     resource['hash'] = file_hash
+
+    if resource.get('format').lower() == 'geojson':
+        logger.info('Converting geojson to csv')
+        tmp = geojson2csv.convert(tmp, logger)
+        logger.info('Done.')
+        ct = 'application/csv'
 
     try:
         table_set = messytables.any_tableset(tmp, mimetype=ct, extension=ct)
