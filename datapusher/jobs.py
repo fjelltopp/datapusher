@@ -324,7 +324,6 @@ def push_to_datastore(task_id, input, dry_run=False):
     logger = logging.getLogger(task_id)
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
-
     validate_input(input)
 
     data = input['metadata']
@@ -332,6 +331,11 @@ def push_to_datastore(task_id, input, dry_run=False):
     ckan_url = data['ckan_url']
     resource_id = data['resource_id']
     api_key = input.get('api_key')
+
+    formatter = logging.Formatter('%(levelname)s:{} %(message)s'.format(resource_id))
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
 
     try:
         resource = get_resource(resource_id, ckan_url, api_key)
