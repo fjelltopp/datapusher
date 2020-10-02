@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8
 COPY requirements-dev.txt /tmp/requirements-dev.txt
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install --upgrade pip &&\

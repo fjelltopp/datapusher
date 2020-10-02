@@ -42,8 +42,10 @@ def convert(file, logger):
             writer.writerow(row)
 
         except KeyError as e:
+            logger.exception(e)
             raise util.JobError("GeoJSON feature must have 'properties' and 'geometry' fields.")
         except ValueError as e:
+            logger.exception(e)
             raise util.JobError("Each GeoJSON feature must have the same properties in order to convert to table. ")
 
     if not outfile.tell():
