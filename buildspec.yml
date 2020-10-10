@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region eu-west-1)
+      - echo Running build for branch/pr/tag $CODEBUILD_WEBHOOK_TRIGGER
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t datapusher:$CODEBUILD_WEBHOOK_TRIGGER .
+      - docker tag datapusher:$CODEBUILD_WEBHOOK_TRIGGER 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$CODEBUILD_WEBHOOK_TRIGGER
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$CODEBUILD_WEBHOOK_TRIGGER
+
