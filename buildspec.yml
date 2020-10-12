@@ -5,12 +5,12 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region eu-west-1)
-      - echo Running build for branch/pr/tag $CODEBUILD_WEBHOOK_TRIGGER
   build:
     commands:
-      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g')
+      - export BUILD_TAG="${CODEBUILD_WEBHOOK_TRIGGER#*/}"
+      - echo $BUILD_TAG
       - echo Build started on `date`
-      - echo Building the Docker image...          
+      - echo Building the Docker image...
       - docker build -t datapusher:$BUILD_TAG .
       - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG
   post_build:
