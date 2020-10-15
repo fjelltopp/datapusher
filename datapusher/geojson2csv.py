@@ -30,7 +30,6 @@ def convert(file, logger):
         try:
             if not writer:
                 fieldnames = list(feature['properties'].keys())
-                fieldnames = fieldnames + ['geometry']  # Ensure geometry is last
                 writer = csv.DictWriter(
                     wrapper_file,
                     fieldnames=fieldnames,
@@ -38,12 +37,11 @@ def convert(file, logger):
                 )
                 writer.writeheader()
             row = feature['properties']
-            row['geometry'] = json.dumps(feature['geometry'])
             writer.writerow(row)
 
         except KeyError as e:
             logger.exception(e)
-            raise util.JobError("GeoJSON feature must have 'properties' and 'geometry' fields.")
+            raise util.JobError("GeoJSON feature must have a 'properties' field.")
         except ValueError as e:
             logger.exception(e)
             raise util.JobError("Each GeoJSON feature must have the same properties in order to convert to table. ")
