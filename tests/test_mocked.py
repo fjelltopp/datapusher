@@ -87,6 +87,7 @@ class TestImport(unittest.TestCase):
 
         jobs.push_to_datastore('fake_id', data)
 
+
     @httpretty.activate
     def test_wrong_api_key(self):
         self.register_urls()

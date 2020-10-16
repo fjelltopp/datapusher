@@ -1,0 +1,100 @@
+area_sort_order,center_x,center_y,area_level,display,spectrum_region_code,epp_level,naomi_level,parent_area_id,area_level_label,pepfar_psnu_level,area_name,spectrum_level,area_id
+1.0,33.6597009250782,-13.2474481265888,0.0,True,0.0,False,False,,Country,False,Malawi,True,MWI
+2.0,33.7743285806864,-11.0529568513731,1.0,True,0.0,True,False,MWI,Region,False,Northern,False,MWI_1_1
+3.0,33.7044541178884,-13.7429725730269,1.0,True,0.0,True,False,MWI,Region,False,Central,False,MWI_1_2
+4.0,35.1922032889879,-15.3050561437436,1.0,True,0.0,True,False,MWI,Region,False,Southern,False,MWI_1_3
+5.0,33.7743285806864,-11.0529568513731,2.0,True,0.0,False,False,MWI_1_1,Zone,False,Northern,False,MWI_2_1
+6.0,33.6562889991605,-13.1358792695792,2.0,True,0.0,False,False,MWI_1_2,Zone,False,Central Eastern,False,MWI_2_2
+7.0,34.0935679089236,-14.3351177658892,2.0,True,0.0,False,False,MWI_1_2,Zone,False,Central Western,False,MWI_2_3
+8.0,35.3830320234123,-14.8488385176978,2.0,True,0.0,False,False,MWI_1_3,Zone,False,South Eastern,False,MWI_2_4
+9.0,34.8436591855537,-16.1679012946779,2.0,True,0.0,False,False,MWI_1_3,Zone,False,South Western,False,MWI_2_5
+10.0,33.4113292032551,-9.97198409030538,3.0,True,0.0,False,False,MWI_2_1,District,True,Chitipa,False,MWI_3_01
+11.0,33.8660693512123,-10.082829941847,3.0,True,0.0,False,False,MWI_2_1,District,True,Karonga,False,MWI_3_02
+12.0,34.0395903470338,-11.617334186815,3.0,True,0.0,False,False,MWI_2_1,District,True,Nkhatabay,False,MWI_3_03
+13.0,33.8545701376732,-10.7892300846953,3.0,True,0.0,False,False,MWI_2_1,District,True,Rumphi,False,MWI_3_04
+14.0,33.5565821582285,-11.7809980897105,3.0,True,0.0,False,False,MWI_2_1,District,True,Mzimba,False,MWI_3_05
+15.0,34.730954381115,-12.0650857129032,3.0,True,0.0,False,False,MWI_2_1,District,True,Likoma,False,MWI_3_06
+16.0,33.4705768736432,-12.9963086761117,3.0,True,0.0,False,False,MWI_2_2,District,True,Kasungu,False,MWI_3_07
+17.0,34.052132728463,-12.8306656748997,3.0,True,0.0,False,False,MWI_2_2,District,True,Nkhotakota,False,MWI_3_08
+18.0,33.8987445504625,-13.2752691263114,3.0,True,0.0,False,False,MWI_2_2,District,True,Ntchisi,False,MWI_3_09
+19.0,33.7410993360108,-13.5207237469234,3.0,True,0.0,False,False,MWI_2_2,District,True,Dowa,False,MWI_3_10
+20.0,34.4536907194787,-13.7652276775538,3.0,True,0.0,False,False,MWI_2_2,District,True,Salima,False,MWI_3_11
+21.0,33.7346779683498,-14.0413632701384,3.0,True,0.0,False,False,MWI_2_3,District,True,Lilongwe,False,MWI_3_12
+22.0,33.0199276101672,-13.7790716160162,3.0,True,0.0,False,False,MWI_2_3,District,True,Mchinji,False,MWI_3_13
+23.0,34.318095074049,-14.238185954442,3.0,True,0.0,False,False,MWI_2_3,District,True,Dedza,False,MWI_3_14
+24.0,34.7685165734216,-14.8217881361157,3.0,True,0.0,False,False,MWI_2_3,District,True,Ntcheu,False,MWI_3_15
+25.0,35.3277591573898,-14.1398859088923,3.0,True,0.0,False,False,MWI_2_4,District,True,Mangochi,False,MWI_3_16
+26.0,35.6017132409924,-14.9078679279007,3.0,True,0.0,False,False,MWI_2_4,District,True,Machinga,False,MWI_3_17
+27.0,35.3483676271606,-15.4394156999106,3.0,True,0.0,False,False,MWI_2_4,District,True,Zomba,False,MWI_3_18
+28.0,35.5437029625268,-15.9066318554664,3.0,True,0.0,False,False,MWI_2_4,District,True,Mulanje,False,MWI_3_19
+29.0,35.6671704882085,-15.6917845826488,3.0,True,0.0,False,False,MWI_2_4,District,True,Phalombe,False,MWI_3_20
+30.0,35.0605477821109,-15.0342587719735,3.0,True,0.0,False,False,MWI_2_4,District,True,Balaka,False,MWI_3_21
+31.0,35.2082995710522,-15.7659987767516,3.0,True,0.0,False,False,MWI_2_5,District,True,Chiradzulu,False,MWI_3_22
+32.0,34.9290773487464,-15.682876921334,3.0,True,0.0,False,False,MWI_2_5,District,True,Blantyre,False,MWI_3_23
+33.0,34.5097014084817,-15.6133904076453,3.0,True,0.0,False,False,MWI_2_5,District,True,Mwanza,False,MWI_3_24
+34.0,35.1456013307299,-16.1314512432235,3.0,True,0.0,False,False,MWI_2_5,District,True,Thyolo,False,MWI_3_25
+35.0,34.7237825182408,-16.2162428553699,3.0,True,0.0,False,False,MWI_2_5,District,True,Chikwawa,False,MWI_3_26
+36.0,35.1017944073878,-16.7179586352461,3.0,True,0.0,False,False,MWI_2_5,District,True,Nsanje,False,MWI_3_27
+37.0,34.6823342803382,-15.4954126901608,3.0,True,0.0,False,False,MWI_2_5,District,True,Neno,False,MWI_3_28
+38.0,33.4113292032551,-9.97198409030538,4.0,True,0.0,False,False,MWI_3_01,Health District,False,Chitipa,False,MWI_4_01
+39.0,33.8660693512123,-10.082829941847,4.0,True,0.0,False,False,MWI_3_02,Health District,False,Karonga,False,MWI_4_02
+40.0,34.0395903470338,-11.617334186815,4.0,True,0.0,False,False,MWI_3_03,Health District,False,Nkhatabay,False,MWI_4_03
+41.0,33.8545701376732,-10.7892300846953,4.0,True,0.0,False,False,MWI_3_04,Health District,False,Rumphi,False,MWI_4_04
+42.0,33.6983552552162,-11.2378263252752,4.0,True,0.0,False,False,MWI_3_05,Health District,False,Mzimba North,False,MWI_4_05
+43.0,33.574901745144,-12.0191097598865,4.0,True,0.0,False,False,MWI_3_05,Health District,False,Mzimba South,False,MWI_4_06
+44.0,34.730954381115,-12.0650857129032,4.0,True,0.0,False,False,MWI_3_06,Health District,False,Likoma,False,MWI_4_07
+45.0,33.4705768736432,-12.9963086761117,4.0,True,0.0,False,False,MWI_3_07,Health District,False,Kasungu,False,MWI_4_08
+46.0,34.052132728463,-12.8306656748997,4.0,True,0.0,False,False,MWI_3_08,Health District,False,Nkhotakota,False,MWI_4_09
+47.0,33.8987445504625,-13.2752691263114,4.0,True,0.0,False,False,MWI_3_09,Health District,False,Ntchisi,False,MWI_4_10
+48.0,33.7410993360108,-13.5207237469234,4.0,True,0.0,False,False,MWI_3_10,Health District,False,Dowa,False,MWI_4_11
+49.0,34.4536907194787,-13.7652276775538,4.0,True,0.0,False,False,MWI_3_11,Health District,False,Salima,False,MWI_4_12
+50.0,33.7346779683498,-14.0413632701384,4.0,True,0.0,False,False,MWI_3_12,Health District,False,Lilongwe,False,MWI_4_13
+51.0,33.0199276101672,-13.7790716160162,4.0,True,0.0,False,False,MWI_3_13,Health District,False,Mchinji,False,MWI_4_14
+52.0,34.318095074049,-14.238185954442,4.0,True,0.0,False,False,MWI_3_14,Health District,False,Dedza,False,MWI_4_15
+53.0,34.7685165734216,-14.8217881361157,4.0,True,0.0,False,False,MWI_3_15,Health District,False,Ntcheu,False,MWI_4_16
+54.0,35.3277591573898,-14.1398859088923,4.0,True,0.0,False,False,MWI_3_16,Health District,False,Mangochi,False,MWI_4_17
+55.0,35.6017132409924,-14.9078679279007,4.0,True,0.0,False,False,MWI_3_17,Health District,False,Machinga,False,MWI_4_18
+56.0,35.3483676271606,-15.4394156999106,4.0,True,0.0,False,False,MWI_3_18,Health District,False,Zomba,False,MWI_4_19
+57.0,35.5437029625268,-15.9066318554664,4.0,True,0.0,False,False,MWI_3_19,Health District,False,Mulanje,False,MWI_4_20
+58.0,35.6671704882085,-15.6917845826488,4.0,True,0.0,False,False,MWI_3_20,Health District,False,Phalombe,False,MWI_4_21
+59.0,35.0605477821109,-15.0342587719735,4.0,True,0.0,False,False,MWI_3_21,Health District,False,Balaka,False,MWI_4_22
+60.0,35.2082995710522,-15.7659987767516,4.0,True,0.0,False,False,MWI_3_22,Health District,False,Chiradzulu,False,MWI_4_23
+61.0,34.9290773487464,-15.682876921334,4.0,True,0.0,False,False,MWI_3_23,Health District,False,Blantyre,False,MWI_4_24
+62.0,34.5097014084817,-15.6133904076453,4.0,True,0.0,False,False,MWI_3_24,Health District,False,Mwanza,False,MWI_4_25
+63.0,35.1456013307299,-16.1314512432235,4.0,True,0.0,False,False,MWI_3_25,Health District,False,Thyolo,False,MWI_4_26
+64.0,34.7237825182408,-16.2162428553699,4.0,True,0.0,False,False,MWI_3_26,Health District,False,Chikwawa,False,MWI_4_27
+65.0,35.1017944073878,-16.7179586352461,4.0,True,0.0,False,False,MWI_3_27,Health District,False,Nsanje,False,MWI_4_28
+66.0,34.6823342803382,-15.4954126901608,4.0,True,0.0,False,False,MWI_3_28,Health District,False,Neno,False,MWI_4_29
+67.0,33.4113292032551,-9.97198409030538,5.0,True,0.0,False,True,MWI_4_01,Health District + Cities,False,Chitipa,False,MWI_5_01
+68.0,33.8660693512123,-10.082829941847,5.0,True,0.0,False,True,MWI_4_02,Health District + Cities,False,Karonga,False,MWI_5_02
+69.0,34.0395903470338,-11.617334186815,5.0,True,0.0,False,True,MWI_4_03,Health District + Cities,False,Nkhatabay,False,MWI_5_03
+70.0,33.8545701376732,-10.7892300846953,5.0,True,0.0,False,True,MWI_4_04,Health District + Cities,False,Rumphi,False,MWI_5_04
+71.0,33.6983552552162,-11.2378263252752,5.0,True,0.0,False,True,MWI_4_05,Health District + Cities,False,Mzimba North,False,MWI_5_05
+72.0,33.574901745144,-12.0191097598865,5.0,True,0.0,False,True,MWI_4_06,Health District + Cities,False,Mzimba South,False,MWI_5_06
+73.0,34.730954381115,-12.0650857129032,5.0,True,0.0,False,True,MWI_4_07,Health District + Cities,False,Likoma,False,MWI_5_07
+74.0,34.0046515297092,-11.4314529820022,5.0,True,0.0,False,True,MWI_4_05,Health District + Cities,False,Mzuzu City,False,MWI_5_08
+75.0,33.4705768736432,-12.9963086761117,5.0,True,0.0,False,True,MWI_4_08,Health District + Cities,False,Kasungu,False,MWI_5_09
+76.0,34.052132728463,-12.8306656748997,5.0,True,0.0,False,True,MWI_4_09,Health District + Cities,False,Nkhotakota,False,MWI_5_10
+77.0,33.8987445504625,-13.2752691263114,5.0,True,0.0,False,True,MWI_4_10,Health District + Cities,False,Ntchisi,False,MWI_5_11
+78.0,33.7410993360108,-13.5207237469234,5.0,True,0.0,False,True,MWI_4_11,Health District + Cities,False,Dowa,False,MWI_5_12
+79.0,34.4536907194787,-13.7652276775538,5.0,True,0.0,False,True,MWI_4_12,Health District + Cities,False,Salima,False,MWI_5_13
+80.0,33.4982091338684,-14.0413632701384,5.0,True,0.0,False,True,MWI_4_13,Health District + Cities,False,Lilongwe,False,MWI_5_14
+81.0,33.0199276101672,-13.7790716160162,5.0,True,0.0,False,True,MWI_4_14,Health District + Cities,False,Mchinji,False,MWI_5_15
+82.0,34.318095074049,-14.238185954442,5.0,True,0.0,False,True,MWI_4_15,Health District + Cities,False,Dedza,False,MWI_5_16
+83.0,34.7685165734216,-14.8217881361157,5.0,True,0.0,False,True,MWI_4_16,Health District + Cities,False,Ntcheu,False,MWI_5_17
+84.0,33.784400952003,-13.9084119162167,5.0,True,0.0,False,True,MWI_4_13,Health District + Cities,False,Lilongwe City,False,MWI_5_18
+85.0,35.3277591573898,-14.1398859088923,5.0,True,0.0,False,True,MWI_4_17,Health District + Cities,False,Mangochi,False,MWI_5_19
+86.0,35.6017132409924,-14.9078679279007,5.0,True,0.0,False,True,MWI_4_18,Health District + Cities,False,Machinga,False,MWI_5_20
+87.0,35.3483676271606,-15.4394156999106,5.0,True,0.0,False,True,MWI_4_19,Health District + Cities,False,Zomba,False,MWI_5_21
+88.0,35.5437029625268,-15.9066318554664,5.0,True,0.0,False,True,MWI_4_20,Health District + Cities,False,Mulanje,False,MWI_5_22
+89.0,35.6671704882085,-15.6917845826488,5.0,True,0.0,False,True,MWI_4_21,Health District + Cities,False,Phalombe,False,MWI_5_23
+90.0,35.0605477821109,-15.0342587719735,5.0,True,0.0,False,True,MWI_4_22,Health District + Cities,False,Balaka,False,MWI_5_24
+91.0,35.3215960559363,-15.3924720645815,5.0,True,0.0,False,True,MWI_4_19,Health District + Cities,False,Zomba City,False,MWI_5_25
+92.0,35.2082995710522,-15.7659987767516,5.0,True,0.0,False,True,MWI_4_23,Health District + Cities,False,Chiradzulu,False,MWI_5_26
+93.0,34.9290773487464,-15.682876921334,5.0,True,0.0,False,True,MWI_4_24,Health District + Cities,False,Blantyre,False,MWI_5_27
+94.0,34.5097014084817,-15.6133904076453,5.0,True,0.0,False,True,MWI_4_25,Health District + Cities,False,Mwanza,False,MWI_5_28
+95.0,35.1456013307299,-16.1314512432235,5.0,True,0.0,False,True,MWI_4_26,Health District + Cities,False,Thyolo,False,MWI_5_29
+96.0,34.7237825182408,-16.2162428553699,5.0,True,0.0,False,True,MWI_4_27,Health District + Cities,False,Chikwawa,False,MWI_5_30
+97.0,35.1017944073878,-16.7179586352461,5.0,True,0.0,False,True,MWI_4_28,Health District + Cities,False,Nsanje,False,MWI_5_31
+98.0,34.6823342803382,-15.4954126901608,5.0,True,0.0,False,True,MWI_4_29,Health District + Cities,False,Neno,False,MWI_5_32
+99.0,35.0511200126121,-15.795556649966,5.0,True,0.0,False,True,MWI_4_24,Health District + Cities,False,Blantyre City,False,MWI_5_33

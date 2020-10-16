@@ -18,6 +18,7 @@ import time
 import tempfile
 
 import messytables
+from datapusher import geojson2csv
 
 import ckanserviceprovider.job as job
 import ckanserviceprovider.util as util
@@ -322,6 +323,12 @@ def push_to_datastore(task_id, input, dry_run=False):
     handler = util.StoringHandler(task_id, input)
     logger = logging.getLogger(task_id)
     logger.addHandler(handler)
+    logging_id = input.get("metadata", {}).get("resource_id", "None")
+    formatter = logging.Formatter(f'[%(asctime)s] %(levelname)s - resource_id:{logging_id} - %(message)s')
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+    logger.propagate = False
     logger.setLevel(logging.DEBUG)
 
     validate_input(input)
@@ -331,6 +338,7 @@ def push_to_datastore(task_id, input, dry_run=False):
     ckan_url = data['ckan_url']
     resource_id = data['resource_id']
     api_key = input.get('api_key')
+
 
     try:
         resource = get_resource(resource_id, ckan_url, api_key)
@@ -412,6 +420,12 @@ def push_to_datastore(task_id, input, dry_run=False):
         return
 
     resource['hash'] = file_hash
+
+    if resource.get('format').lower() == 'geojson':
+        logger.info('Converting geojson to csv')
+        tmp = geojson2csv.convert(tmp, logger)
+        logger.info('Done.')
+        ct = 'application/csv'
 
     try:
         table_set = messytables.any_tableset(tmp, mimetype=ct, extension=ct)

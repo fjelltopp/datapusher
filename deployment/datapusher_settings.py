@@ -1,6 +1,6 @@
 import uuid
 
-DEBUG = False
+DEBUG = True
 TESTING = False
 SECRET_KEY = str(uuid.uuid4())
 USERNAME = str(uuid.uuid4())
