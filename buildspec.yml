@@ -8,15 +8,19 @@ phases:
       - echo Running build for branch/pr/tag $CODEBUILD_WEBHOOK_TRIGGER
   build:
     commands:
-      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g').latest
+      - export timestamp=$(date +"%Y%m%dT%H%M%S")
+      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g')
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t datapusher:$BUILD_TAG .
-      - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG
+      - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.latest
+      - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.${timestamp}
   post_build:
     commands:
-      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g').latest
+      - export timestamp=$(date +"%Y%m%dT%H%M%S")
+      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g')
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG
+      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.latest
+      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.${timestamp}
 
