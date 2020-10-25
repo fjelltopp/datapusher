@@ -21,6 +21,4 @@ phases:
       - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g')
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.latest
-      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.${timestamp}
-
+      - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher
