@@ -6,12 +6,14 @@ phases:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region eu-west-1)
       - echo Running build for branch/pr/tag $CODEBUILD_WEBHOOK_TRIGGER
+      - echo Webhook base_ref $CODEBUILD_WEBHOOK_BASE_REF
+      - echo Webhook head_ref $CODEBUILD_WEBHOOK_HEAD_REF
   build:
     commands:
-      - export timestamp=$(date +"%Y%m%dT%H%M%S")
-      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed 's/.*\///g')
+      - export timestamp=$(date +"%Y%m%d")
+      - export BUILD_TAG=$(echo $CODEBUILD_WEBHOOK_BASE_REF | sed 's/.*\///g')
       - echo Build started on `date`
-      - echo Building the Docker image...          
+      - echo Building the Docker image...
       - docker build -t datapusher:$BUILD_TAG .
       - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.latest
       - docker tag datapusher:$BUILD_TAG 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher:$BUILD_TAG.${timestamp}
@@ -20,3 +22,4 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push 254010146609.dkr.ecr.eu-west-1.amazonaws.com/datapusher
+
