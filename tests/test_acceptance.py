@@ -129,7 +129,7 @@ class TestImport(unittest.TestCase):
         # above) with another mock response, this one mocks a response body
         # that's bigger than MAX_CONTENT_LENGTH.
         source_url = 'http://www.source.org/static/file'
-        size = jobs.MAX_CONTENT_LENGTH + 1
+        size = app.application.config.get('MAX_CONTENT_LENGTH') + 1
         httpretty.register_uri(
             httpretty.GET, source_url,
             body='a' * size,
@@ -163,7 +163,7 @@ class TestImport(unittest.TestCase):
         # above) with another mock response, this one mocks a response body
         # that's bigger than MAX_CONTENT_LENGTH.
         source_url = 'http://www.source.org/static/file'
-        size = jobs.MAX_CONTENT_LENGTH + 1
+        size = app.application.config.get('MAX_CONTENT_LENGTH') + 1
         httpretty.register_uri(
             httpretty.GET, source_url,
             body='a' * size,
