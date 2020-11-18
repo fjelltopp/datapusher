@@ -7,7 +7,7 @@ COPY . $DATAPUSHER_DIR
 
 WORKDIR $DATAPUSHER_DIR
 RUN pip install --upgrade pip
-RUN if [ "$DEVELOPMENT" = "true" ] ; then pip install -r requirements-dev.txt; else pip install -r requirments.txt; fi
+RUN if [ "$DEVELOPMENT" = "true" ] ; then pip install -r requirements-dev.txt; else pip install -r requirements.txt; fi
 RUN pip install uwsgi
 
 RUN chown -R www-data:www-data $DATAPUSHER_DIR
