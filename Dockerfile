@@ -1,10 +1,17 @@
 FROM python:3.8
 
-COPY . /var/www/datapusher
+ENV DATAPUSHER_DIR /var/www/datapusher
 
-WORKDIR /var/www/datapusher
-RUN pip install --upgrade pip &&\
-    pip install -r requirements.txt
+ARG DEVELOPMENT
+COPY . $DATAPUSHER_DIR
+
+WORKDIR $DATAPUSHER_DIR
+RUN pip install --upgrade pip
+RUN if [ "$DEVELOPMENT" = "true" ] ; then pip install -r requirements-dev.txt; else pip install -r requirements.txt; fi
+RUN pip install uwsgi
+
+RUN chown -R www-data:www-data $DATAPUSHER_DIR
+
 ENV LC_ALL=C
 ENTRYPOINT ["./datapusher-entrypoint.sh"]
-CMD [ "python3", "datapusher/main.py", "deployment/datapusher_settings.py"]
+CMD /usr/local/bin/uwsgi --ini-paste $DATAPUSHER_DIR/deployment/datapusher-uwsgi.ini
