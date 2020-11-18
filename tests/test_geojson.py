@@ -3,6 +3,11 @@
 Test the whole datapusher but mock the CKAN datastore.
 '''
 import os
+import ckanserviceprovider.web as web
+os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
+                                        'settings_test.py')
+web.init()
+
 import json
 import unittest
 import logging
@@ -14,8 +19,6 @@ import ckanserviceprovider.util as util
 from datapusher.geojson2csv import convert
 from io import StringIO
 
-os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
-                                        'settings_test.py')
 
 
 app = main.serve_test()

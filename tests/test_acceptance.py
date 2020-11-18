@@ -11,6 +11,11 @@ that the right values were pushed?
 
 """
 import os
+import ckanserviceprovider.web as web
+os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
+                                        'settings_test.py')
+web.init()
+
 import json
 import unittest
 import datetime
@@ -19,14 +24,9 @@ from nose.tools import assert_equal, raises
 import httpretty
 import requests
 
-import datapusher.main as main
 import datapusher.jobs as jobs
 import ckanserviceprovider.util as util
 
-os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
-                                        'settings_test.py')
-
-app = main.serve_test()
 
 
 def join_static_path(filename):
@@ -129,7 +129,7 @@ class TestImport(unittest.TestCase):
         # above) with another mock response, this one mocks a response body
         # that's bigger than MAX_CONTENT_LENGTH.
         source_url = 'http://www.source.org/static/file'
-        size = app.application.config.get('MAX_CONTENT_LENGTH') + 1
+        size = jobs.MAX_CONTENT_LENGTH + 1
         httpretty.register_uri(
             httpretty.GET, source_url,
             body='a' * size,
@@ -163,7 +163,7 @@ class TestImport(unittest.TestCase):
         # above) with another mock response, this one mocks a response body
         # that's bigger than MAX_CONTENT_LENGTH.
         source_url = 'http://www.source.org/static/file'
-        size = app.application.config.get('MAX_CONTENT_LENGTH') + 1
+        size = jobs.MAX_CONTENT_LENGTH + 1
         httpretty.register_uri(
             httpretty.GET, source_url,
             body='a' * size,

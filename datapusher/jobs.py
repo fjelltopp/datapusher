@@ -55,6 +55,8 @@ _TYPES = [messytables.StringType, messytables.DecimalType,
 TYPE_MAPPING = web.app.config.get('TYPE_MAPPING', _TYPE_MAPPING)
 TYPES = web.app.config.get('TYPES', _TYPES)
 
+MAX_CONTENT_LENGTH = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
+
 DATASTORE_URLS = {
     'datastore_delete': '{ckan_url}/api/action/datastore_delete',
     'resource_update': '{ckan_url}/api/action/resource_update'
@@ -376,12 +378,11 @@ def push_to_datastore(task_id, input, dry_run=False):
         response.raise_for_status()
 
         cl = response.headers.get('content-length')
-        max_content_length = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
         try:
-            if cl and int(cl) > max_content_length:
+            if cl and int(cl) > MAX_CONTENT_LENGTH:
                 raise util.JobError(
                     'Resource too large to download: {cl} > max ({max_cl}).'
-                    .format(cl=cl, max_cl=max_content_length))
+                    .format(cl=cl, max_cl=MAX_CONTENT_LENGTH))
         except ValueError:
             pass
 
@@ -390,10 +391,10 @@ def push_to_datastore(task_id, input, dry_run=False):
         m = hashlib.md5()
         for chunk in response.iter_content(CHUNK_SIZE):
             length += len(chunk)
-            if length > max_content_length:
+            if length > MAX_CONTENT_LENGTH:
                 raise util.JobError(
                     'Resource too large to process: {cl} > max ({max_cl}).'
-                    .format(cl=length, max_cl=max_content_length))
+                    .format(cl=length, max_cl=MAX_CONTENT_LENGTH))
             tmp.write(chunk)
             m.update(chunk)
 
