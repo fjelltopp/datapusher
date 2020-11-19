@@ -24,3 +24,5 @@ PORT = 8800
 
 #LOG_FILE = '/tmp/ckan_service.log'
 STDERR = True
+
+MAX_CONTENT_LENGTH = 45485760

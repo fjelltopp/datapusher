@@ -4,3 +4,5 @@ TESTING = True
 SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 NAME = 'datapusher'
+
+MAX_CONTENT_LENGTH = 45485760

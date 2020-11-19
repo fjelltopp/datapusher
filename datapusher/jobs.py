@@ -16,7 +16,6 @@ import decimal
 import hashlib
 import time
 import tempfile
-
 import messytables
 from datapusher import geojson2csv
 
@@ -30,7 +29,6 @@ if locale.getdefaultlocale()[0]:
 else:
     locale.setlocale(locale.LC_ALL, '')
 
-MAX_CONTENT_LENGTH = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
 CHUNK_SIZE = 16 * 1024  # 16kb
 DOWNLOAD_TIMEOUT = 30
 
@@ -56,6 +54,8 @@ _TYPES = [messytables.StringType, messytables.DecimalType,
 
 TYPE_MAPPING = web.app.config.get('TYPE_MAPPING', _TYPE_MAPPING)
 TYPES = web.app.config.get('TYPES', _TYPES)
+
+MAX_CONTENT_LENGTH = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
 
 DATASTORE_URLS = {
     'datastore_delete': '{ckan_url}/api/action/datastore_delete',
