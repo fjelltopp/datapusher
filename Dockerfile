@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM 254010146609.dkr.ecr.eu-west-1.amazonaws.com/python:3.8
 
 ENV DATAPUSHER_DIR /var/www/datapusher
 
