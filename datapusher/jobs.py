@@ -17,6 +17,7 @@ import hashlib
 import time
 import tempfile
 import messytables
+import mimetypes
 from datapusher import geojson2csv
 
 import ckanserviceprovider.job as job
@@ -339,7 +340,6 @@ def push_to_datastore(task_id, input, dry_run=False):
     resource_id = data['resource_id']
     api_key = input.get('api_key')
 
-
     try:
         resource = get_resource(resource_id, ckan_url, api_key)
     except util.JobError as e:
@@ -376,7 +376,6 @@ def push_to_datastore(task_id, input, dry_run=False):
             stream=True,  # just gets the headers for now
         )
         response.raise_for_status()
-
         cl = response.headers.get('content-length')
         try:
             if cl and int(cl) > MAX_CONTENT_LENGTH:
@@ -427,16 +426,24 @@ def push_to_datastore(task_id, input, dry_run=False):
         logger.info('Done.')
         ct = 'application/csv'
 
+    read_exception = None
     try:
         table_set = messytables.any_tableset(tmp, mimetype=ct, extension=ct)
     except messytables.ReadError as e:
-        # try again with format
+        read_exception = e
+
+    # try again with format inferred from url
+    if not table_set.tables:
         tmp.seek(0)
         try:
-            format = resource.get('format')
-            table_set = messytables.any_tableset(tmp, mimetype=format, extension=format)
-        except:
-            raise util.JobError(e)
+            extension = resource.get('format')
+            format = mimetypes.guess_type(url)[0]
+            table_set = messytables.any_tableset(tmp, mimetype=format, extension=extension)
+        except Exception:
+            raise util.JobError(read_exception)
+
+        if not table_set.tables:
+            raise util.JobError("Unable to read any tabular data from the file.")
 
     get_row_set = web.app.config.get('GET_ROW_SET',
                                      lambda table_set: table_set.tables.pop())
