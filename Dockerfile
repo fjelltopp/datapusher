@@ -14,4 +14,4 @@ RUN chown -R www-data:www-data $DATAPUSHER_DIR
 
 ENV LC_ALL=C
 ENTRYPOINT ["./datapusher-entrypoint.sh"]
-CMD /usr/local/bin/uwsgi --ini-paste $DATAPUSHER_DIR/deployment/datapusher-uwsgi.ini --honour-stdin
+CMD /usr/local/bin/uwsgi --ini-paste $DATAPUSHER_DIR/deployment/datapusher-uwsgi.ini
