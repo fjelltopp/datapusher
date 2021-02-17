@@ -399,7 +399,8 @@ class TestImport(unittest.TestCase):
                                {'type': 'numeric', 'id': 'Internal Ref'},
                                {'type': 'text', 'id': 'Capital/ Revenue'},
                                {'type': 'text', 'id': 'Cost Centre'},
-                               {'type': 'text', 'id': 'Cost Centre Description'},
+                               {'type': 'text',
+                                'id': 'Cost Centre Description'},
                                {'type': 'numeric', 'id': 'Grand Total'}])
         assert_equal(len(results), 230)
         assert_equal(results[0],
