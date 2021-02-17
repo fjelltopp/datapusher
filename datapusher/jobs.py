@@ -432,7 +432,7 @@ def push_to_datastore(task_id, input, dry_run=False):
         read_exception = e
 
     # try again with format inferred from url
-    if not (hasattr(table_set, 'tables') and table_set.tables):
+    if not table_set or not table_set.tables:
         tmp.seek(0)
         try:
             extension = resource.get('format')
@@ -441,7 +441,7 @@ def push_to_datastore(task_id, input, dry_run=False):
         except Exception:
             raise util.JobError(read_exception)
 
-        if not (hasattr(table_set, 'tables') and table_set.tables):
+        if not table_set or not table_set.tables:
             raise util.JobError("Unable to read any tabular data from the file.")
 
     get_row_set = web.app.config.get('GET_ROW_SET',
