@@ -429,7 +429,7 @@ def push_to_datastore(task_id, input, dry_run=False):
     try:
         table_set = messytables.any_tableset(tmp, mimetype=ct, extension=ct)
     except messytables.ReadError as e:
-        read_exception = e
+        logger.warning("First attempt to read table failed: {}".format(e))
 
     # try again with format inferred from url
     if not table_set or not table_set.tables:
@@ -438,11 +438,11 @@ def push_to_datastore(task_id, input, dry_run=False):
             extension = resource.get('format')
             format = mimetypes.guess_type(url)[0]
             table_set = messytables.any_tableset(tmp, mimetype=format, extension=extension)
-        except Exception:
-            raise util.JobError(read_exception)
+        except messytables.ReadError as e:
+            raise util.JobError(e)
 
-        if not table_set or not table_set.tables:
-            raise util.JobError("Unable to read any tabular data from the file.")
+    if not table_set or not table_set.tables:
+        raise util.JobError("Unable to read any tabular data from the file.")
 
     get_row_set = web.app.config.get('GET_ROW_SET',
                                      lambda table_set: table_set.tables.pop())
