@@ -256,6 +256,32 @@ class TestImport(unittest.TestCase):
              'temperature': 1})
 
     @httpretty.activate
+    def test_csv_with_html_content_type(self):
+        """Test successfully fetching and parsing a simple CSV file when the
+        content type specified is text/html not csv.
+        """
+        self.register_urls(content_type="text/html")
+        data = {
+            'api_key': self.api_key,
+            'job_type': 'push_to_datastore',
+            'metadata': {
+                'ckan_url': 'http://%s/' % self.host,
+                'resource_id': self.resource_id
+            }
+        }
+
+        headers, results = jobs.push_to_datastore('fake_id', data, True)
+        results = list(results)
+        assert_equal(headers, [{'type': 'timestamp', 'id': 'date'},
+                               {'type': 'numeric', 'id': 'temperature'},
+                               {'type': 'text', 'id': 'place'}])
+        assert_equal(len(results), 6)
+        assert_equal(
+            results[0],
+            {'date': datetime.datetime(2011, 1, 1, 0, 0), 'place': 'Galway',
+             'temperature': 1})
+
+    @httpretty.activate
     def test_simple_tsv(self):
         """Test successfully fetching and parsing a simple TSV file.
 
