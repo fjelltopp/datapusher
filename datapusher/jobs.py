@@ -341,6 +341,7 @@ def push_to_datastore(task_id, input, dry_run=False):
     api_key = input.get('api_key')
 
     try:
+        time.sleep(1)  # HACK: Give CKAN time to update the resource
         resource = get_resource(resource_id, ckan_url, api_key)
     except util.JobError as e:
         # try again in 5 seconds just incase CKAN is slow at adding resource
@@ -363,6 +364,7 @@ def push_to_datastore(task_id, input, dry_run=False):
     # fetch the resource data
     logger.info('Fetching from: {0}'.format(url))
     headers = {}
+
     if resource.get('url_type') == 'upload':
         # If this is an uploaded file to CKAN, authenticate the request,
         # otherwise we won't get file from private resources
