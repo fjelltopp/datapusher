@@ -5,3 +5,5 @@ messytables==0.15.2
 certifi
 requests[security]==2.24.0
 ijson==3.1.1
+# newer versions of Werkzeug not compatilbe with ckanserviceprovider
+Werkzeug~=2.0.0
