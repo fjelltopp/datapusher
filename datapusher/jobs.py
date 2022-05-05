@@ -422,11 +422,15 @@ def push_to_datastore(task_id, input, dry_run=False):
 
     resource['hash'] = file_hash
 
-    if resource.get('format').lower() == 'geojson':
-        logger.info('Converting geojson to csv')
-        tmp = geojson2csv.convert(tmp, logger)
-        logger.info('Done.')
-        ct = 'application/csv'
+    format = resource.get('format', '')
+    if format:
+        if format.lower() == 'geojson':
+            logger.info('Converting geojson to csv')
+            tmp = geojson2csv.convert(tmp, logger)
+            logger.info('Done.')
+            ct = 'application/csv'
+        else:
+            ct = format
 
     try:
         table_set = messytables.any_tableset(tmp, mimetype=ct, extension=ct)
