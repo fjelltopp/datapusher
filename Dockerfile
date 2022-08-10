@@ -1,4 +1,4 @@
-FROM fjelltopp/python-fjelltopp-base:3.9
+FROM fjelltopp/python-fjelltopp-base:3.8
 
 ENV DATAPUSHER_DIR /var/www/datapusher
 
