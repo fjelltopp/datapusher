@@ -268,12 +268,12 @@ class TestImport():
 
         headers, results = jobs.push_to_datastore('fake_id', data, True)
         results = list(results)
-        assert_equal(headers, [{'type': 'timestamp', 'id': 'date'},
-                               {'type': 'numeric', 'id': 'temperature'},
-                               {'type': 'text', 'id': 'place'}])
-        assert_equal(len(results), 6)
-        assert_equal(
-            results[0],
+        assert (headers == [{'type': 'timestamp', 'id': 'date'},
+                            {'type': 'numeric', 'id': 'temperature'},
+                            {'type': 'text', 'id': 'place'}])
+        assert len(results) == 6
+        assert (
+            results[0] ==
             {'date': datetime.datetime(2011, 1, 1, 0, 0), 'place': 'Galway',
              'temperature': 1})
 
