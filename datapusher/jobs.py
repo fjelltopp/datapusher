@@ -30,8 +30,13 @@ if locale.getdefaultlocale()[0]:
 else:
     locale.setlocale(locale.LC_ALL, '')
 
-CHUNK_SIZE = 16 * 1024  # 16kb
-DOWNLOAD_TIMEOUT = 30
+MAX_CONTENT_LENGTH = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
+CHUNK_SIZE = web.app.config.get('CHUNK_SIZE') or 16384
+CHUNK_INSERT_ROWS = web.app.config.get('CHUNK_INSERT_ROWS') or 250
+DOWNLOAD_TIMEOUT = web.app.config.get('DOWNLOAD_TIMEOUT') or 30
+USE_PROXY = 'DOWNLOAD_PROXY' in web.app.config
+if USE_PROXY:
+    DOWNLOAD_PROXY = web.app.config.get('DOWNLOAD_PROXY')
 
 if web.app.config.get('SSL_VERIFY') in ['False', 'FALSE', '0', False, 0]:
     SSL_VERIFY = False
@@ -55,8 +60,6 @@ _TYPES = [messytables.StringType, messytables.DecimalType,
 
 TYPE_MAPPING = web.app.config.get('TYPE_MAPPING', _TYPE_MAPPING)
 TYPES = web.app.config.get('TYPES', _TYPES)
-
-MAX_CONTENT_LENGTH = web.app.config.get('MAX_CONTENT_LENGTH') or 10485760
 
 DATASTORE_URLS = {
     'datastore_delete': '{ckan_url}/api/action/datastore_delete',
@@ -364,20 +367,18 @@ def push_to_datastore(task_id, input, dry_run=False):
     # fetch the resource data
     logger.info('Fetching from: {0}'.format(url))
     headers = {}
-
     if resource.get('url_type') == 'upload':
         # If this is an uploaded file to CKAN, authenticate the request,
         # otherwise we won't get file from private resources
         headers['Authorization'] = api_key
     try:
-        response = requests.get(
-            url,
-            headers=headers,
-            timeout=DOWNLOAD_TIMEOUT,
-            verify=SSL_VERIFY,
-            stream=True,  # just gets the headers for now
-        )
+        kwargs = {'headers': headers, 'timeout': DOWNLOAD_TIMEOUT,
+                  'verify': SSL_VERIFY, 'stream': True}
+        if USE_PROXY:
+            kwargs['proxies'] = {'http': DOWNLOAD_PROXY, 'https': DOWNLOAD_PROXY}
+        response = requests.get(url, **kwargs)
         response.raise_for_status()
+
         cl = response.headers.get('content-length')
         try:
             if cl and int(cl) > MAX_CONTENT_LENGTH:
@@ -529,7 +530,7 @@ def push_to_datastore(task_id, input, dry_run=False):
         return headers_dicts, result
 
     count = 0
-    for i, chunk in enumerate(chunky(result, 250)):
+    for i, chunk in enumerate(chunky(result, CHUNK_INSERT_ROWS)):
         records, is_it_the_last_chunk = chunk
         count += len(records)
         logger.info('Saving chunk {number} {is_last}'.format(

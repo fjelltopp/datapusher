@@ -1,9 +1,7 @@
 argparse
-ckanserviceprovider==0.0.10
+ckanserviceprovider==1.0.0
 html5lib==1.0.1
 messytables==0.15.2
 certifi
-requests[security]==2.24.0
+requests[security]==2.27.1
 ijson==3.1.1
-# newer versions of Werkzeug not compatilbe with ckanserviceprovider
-Werkzeug~=2.0.0
