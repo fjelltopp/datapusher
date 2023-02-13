@@ -19,6 +19,7 @@ import tempfile
 import messytables
 import mimetypes
 from datapusher import geojson2csv
+from datapusher import xlsx2csv
 
 import ckanserviceprovider.job as job
 import ckanserviceprovider.util as util
@@ -428,6 +429,11 @@ def push_to_datastore(task_id, input, dry_run=False):
         if format.lower() == 'geojson':
             logger.info('Converting geojson to csv')
             tmp = geojson2csv.convert(tmp, logger)
+            logger.info('Done.')
+            ct = 'application/csv'
+        elif format.lower() == 'xlsx':
+            logger.info('Converting xlsx to csv')
+            tmp = xlsx2csv.convert(tmp, logger)
             logger.info('Done.')
             ct = 'application/csv'
         else:
