@@ -8,6 +8,7 @@ import logging
 import os
 import httpretty
 import datapusher.main as main
+import datapusher.jobs as jobs
 from datapusher.xlsx2csv import convert
 import pandas
 
@@ -22,7 +23,7 @@ def join_static_path(filename):
 
 
 def get_static_file(filename):
-    return open(join_static_path(filename)).read()
+    return open(join_static_path(filename), mode='rb').read()
 
 
 class TestXLSX():
@@ -80,4 +81,16 @@ class TestXLSX():
         csv_from_file = pandas.read_csv(csv)
         assert excel_from_csv.equals(csv_from_file)
 
+    @httpretty.activate
+    def test_xlsx(self):
+        self.register_urls()
+        data = {
+            'api_key': self.api_key,
+            'job_type': 'push_to_datastore',
+            'metadata': {
+                'ckan_url': 'http://%s/' % self.host,
+                'resource_id': self.resource_id
+            }
+        }
 
+        jobs.push_to_datastore('fake_id', data)
