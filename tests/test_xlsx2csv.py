@@ -3,16 +3,13 @@
 Test the whole datapusher but mock the CKAN datastore.
 '''
 
-import os
 import json
-
-import pytest
+import logging
+import os
 import httpretty
-
 import datapusher.main as main
-import datapusher.jobs as jobs
-import ckanserviceprovider.util as util
 from datapusher.xlsx2csv import convert
+import pandas
 
 os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
                                         'settings_test.py')
@@ -28,7 +25,7 @@ def get_static_file(filename):
     return open(join_static_path(filename)).read()
 
 
-class xlsx():
+class TestXLSX():
     @classmethod
     def setup_class(cls):
         cls.host = 'www.ckan.org'
@@ -36,9 +33,9 @@ class xlsx():
         cls.resource_id = 'foo-bar-42'
 
     def register_urls(self):
-        source_url = 'http://www.source.org/static/simple.xlsx'
+        source_url = 'http://www.source.org/static/4_anc_estimates.xlsx'
         httpretty.register_uri(httpretty.GET, source_url,
-                               body=get_static_file('simple.xlsx'),
+                               body=get_static_file('4_anc_estimates.xlsx'),
                                content_type="application/vnd.ms-excel")
 
         res_url = 'http://www.ckan.org/api/3/action/resource_show'
@@ -74,17 +71,13 @@ class xlsx():
                                body=json.dumps({'success': True}),
                                content_type='application/json')
 
-    @httpretty.activate
-    def test_xlsx(self):
-        self.register_urls()
-        data = {
-            'api_key': self.api_key,
-            'job_type': 'push_to_datastore',
-            'metadata': {
-                'ckan_url': 'http://%s/' % self.host,
-                'resource_id': self.resource_id
-            }
-        }
+    def test_convert_xlsx_to_csv(self):
+        log = logging.getLogger(__name__)
+        xlsx = open(file=join_static_path('4_anc_estimates.xlsx'), mode='rb')
+        csv_from_xlsx = convert(xlsx, log)
+        excel_from_csv = pandas.read_csv(csv_from_xlsx)
+        csv = open(join_static_path('4_anc_estimates.csv'))
+        csv_from_file = pandas.read_csv(csv)
+        assert excel_from_csv.equals(csv_from_file)
 
-        jobs.push_to_datastore('fake_id', data)
 
