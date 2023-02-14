@@ -12,6 +12,7 @@ import httpretty
 import datapusher.main as main
 import datapusher.jobs as jobs
 import ckanserviceprovider.util as util
+from datapusher.xlsx2csv import convert
 
 os.environ['JOB_CONFIG'] = os.path.join(os.path.dirname(__file__),
                                         'settings_test.py')
