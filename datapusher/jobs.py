@@ -483,14 +483,14 @@ def push_to_datastore(task_id, input, dry_run=False):
 
     row_set.register_processor(messytables.types_processor(types))
 
-    headers = [header.strip() for header in headers if header.strip()]
+    headers = [str(header).strip() for header in headers if str(header).strip()]
     headers_set = set(headers)
 
     def row_iterator():
         for row in row_set:
             data_row = {}
             for index, cell in enumerate(row):
-                column_name = cell.column.strip()
+                column_name = str(cell.column).strip()
                 if column_name not in headers_set:
                     continue
                 if isinstance(cell.value, str):
