@@ -26,7 +26,10 @@ from ckanserviceprovider import web
 
 if locale.getdefaultlocale()[0]:
     lang, encoding = locale.getdefaultlocale()
-    locale.setlocale(locale.LC_ALL, locale=(lang, encoding))
+    try:
+        locale.setlocale(locale.LC_ALL, f'{lang}.{encoding}')
+    except locale.Error:
+        locale.setlocale(locale.LC_ALL, '')
 else:
     locale.setlocale(locale.LC_ALL, '')
 
