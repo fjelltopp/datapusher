@@ -397,7 +397,7 @@ class TestImport():
                                {'type': 'text', 'id': 'Cost Centre'},
                                {'type': 'text',
                                 'id': 'Cost Centre Description'},
-                               {'type': 'numeric', 'id': 'Grand Total'}])
+                               {'type': 'text', 'id': 'Grand Total'}])
         assert len(results) == 230
         assert (results[0] ==
                      {'Directorate': 'Adult and Culture',
@@ -406,7 +406,7 @@ class TestImport():
                       'Cost Centre Description':
                       'WELFARE RIGHTS WORKERS       M',
                       'Capital/ Revenue': 'Revenue',
-                      'Grand Total': 828.0,
+                      'Grand Total': '828.00',
                       'Payment Date': datetime.datetime(2011, 10, 24, 0, 0),
                       'Internal Ref': 5277184,
                       'Cost Centre': '1MR48',
