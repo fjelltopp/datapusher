@@ -119,7 +119,7 @@ class TestGeoJSON(unittest.TestCase):
         expected_csv = pandas.read_csv(join_static_path('simple_output.csv'))
         self.assertEqual(set(output_csv.columns), set(expected_csv.columns))
         output_csv = output_csv[expected_csv.columns]
-        pandas.util.testing.assert_frame_equal(output_csv, expected_csv)
+        pandas.testing.assert_frame_equal(output_csv, expected_csv)
 
     def test_convert_malawi(self):
         log = logging.getLogger(__name__)
@@ -129,7 +129,7 @@ class TestGeoJSON(unittest.TestCase):
         expected_csv = pandas.read_csv(join_static_path('malawi_output.csv'))
         self.assertEqual(set(output_csv.columns), set(expected_csv.columns))
         output_csv = output_csv[expected_csv.columns]
-        pandas.util.testing.assert_frame_equal(output_csv, expected_csv)
+        pandas.testing.assert_frame_equal(output_csv, expected_csv)
 
     def test_convert_ghana(self):
         log = logging.getLogger(__name__)
@@ -139,7 +139,7 @@ class TestGeoJSON(unittest.TestCase):
         expected_csv = pandas.read_csv(join_static_path('ghana_output.csv'))
         self.assertEqual(set(output_csv.columns), set(expected_csv.columns))
         output_csv = output_csv[expected_csv.columns]
-        pandas.util.testing.assert_frame_equal(output_csv, expected_csv)
+        pandas.testing.assert_frame_equal(output_csv, expected_csv)
 
     def test_convert_no_features(self):
         log = logging.getLogger(__name__)

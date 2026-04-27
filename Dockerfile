@@ -1,4 +1,7 @@
-FROM fjelltopp/python-fjelltopp-base:3.8
+FROM python:3.10
+RUN pip3 install uwsgi pipenv
+RUN apt update && apt install rsync curl -y && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV DATAPUSHER_DIR /var/www/datapusher
 
